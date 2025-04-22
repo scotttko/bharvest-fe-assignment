@@ -1,8 +1,10 @@
 import { css } from '@emotion/react'
 import { colorPalette, colors } from './colorPalette'
+import { fontVariables } from './fonts'
 
 export default css`
   ${colorPalette};
+  ${fontVariables}
 
   @font-face {
     font-family: 'Pretendard Variable';
@@ -118,6 +120,7 @@ export default css`
   audio,
   video {
     padding: 0;
+    margin: 0;
     border: 0;
     font-size: 100%;
   }
@@ -179,5 +182,9 @@ export default css`
   a {
     color: inherit;
     text-decoration: inherit;
+  }
+
+  input {
+    all: unset;
   }
 `
