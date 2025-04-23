@@ -186,5 +186,6 @@ export default css`
 
   input {
     all: unset;
+    min-width: 0;
   }
 `

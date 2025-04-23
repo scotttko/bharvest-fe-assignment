@@ -11,6 +11,7 @@ function IcChevronDown({ size, color, ...props }: IcChevronDownProps) {
       viewBox="0 0 24 24"
       fill="none"
       stroke-width="8"
+      style={{ transform: 'rotate(-90deg)' }}
       {...props}
     >
       <path
