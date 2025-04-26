@@ -67,6 +67,7 @@ const DropdownWrapper = styled(motion.div)`
   border-radius: 16px;
   background-color: ${colors.surface1};
   border: 1px solid ${colors.surface2};
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 6px;
   z-index: var(--alert-zindex);
 `
 

@@ -1,6 +1,6 @@
 import Modal from '@/components/shared/modal'
 import TokenSelectContents from './TokenSelectContents'
-import { SwapAction } from '@/contexts/SwapContextProvider'
+import { SwapAction } from '@/models/tokens'
 
 interface TokenSelectModalProps {
   isOpen: boolean

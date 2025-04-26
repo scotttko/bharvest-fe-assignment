@@ -1,6 +1,9 @@
 import { Icon } from '@/components/shared'
+import SwapSettingButton from '@/components/swap/setting/SwapSettingButton'
+import SwapInfoAccordion from '@/components/swap/SwapInfoAccordion'
 import SwapTokenBox from '@/components/swap/SwapTokenBox'
 import SwapContextProvider, { useSwapContext } from '@/contexts/SwapContextProvider'
+import SwapSettingContextProvider from '@/contexts/SwapSettingContextProvider'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
@@ -11,6 +14,7 @@ function SwapPageView() {
 
   return (
     <SwapContainer>
+      <SwapSettingButton />
       <SellBoxWrapper>
         <SwapTokenBox action="sell" key={swapPair.sell?.symbol} />
 
@@ -21,6 +25,8 @@ function SwapPageView() {
 
       <SwapTokenBox action="buy" key={swapPair.buy?.symbol} />
       <ConnectButton>Connect Wallet</ConnectButton>
+
+      <SwapInfoAccordion />
     </SwapContainer>
   )
 }
@@ -28,7 +34,9 @@ function SwapPageView() {
 function SwapPage() {
   return (
     <SwapContextProvider>
-      <SwapPageView />
+      <SwapSettingContextProvider>
+        <SwapPageView />
+      </SwapSettingContextProvider>
     </SwapContextProvider>
   )
 }
