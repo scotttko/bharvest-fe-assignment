@@ -1,25 +1,35 @@
 import { Icon } from '@/components/shared'
 import SwapTokenBox from '@/components/swap/SwapTokenBox'
-import useTokenSwap from '@/hooks/useTokenSwap'
+import SwapContextProvider, { useSwapContext } from '@/contexts/SwapContextProvider'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
-function SwapPage() {
-  const { tokenSwapPair, onSwitch } = useTokenSwap()
+function SwapPageView() {
+  const { onSwitch, swapPair } = useSwapContext()
+
   return (
     <SwapContainer>
       <SellBoxWrapper>
-        <SwapTokenBox title="Sell" token={tokenSwapPair.sell} />
+        <SwapTokenBox action="sell" key={swapPair.sell?.symbol} />
+
         <SwtichTokenButton whileTap={{ scale: 0.95 }} onClick={onSwitch}>
           <Icon name="IcArrowDown" />
         </SwtichTokenButton>
       </SellBoxWrapper>
 
-      <SwapTokenBox title="Buy" token={tokenSwapPair.buy} />
+      <SwapTokenBox action="buy" key={swapPair.buy?.symbol} />
       <ConnectButton>Connect Wallet</ConnectButton>
     </SwapContainer>
+  )
+}
+
+function SwapPage() {
+  return (
+    <SwapContextProvider>
+      <SwapPageView />
+    </SwapContextProvider>
   )
 }
 

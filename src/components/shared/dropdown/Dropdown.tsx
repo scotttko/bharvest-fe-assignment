@@ -1,15 +1,22 @@
 import { colors } from '@/styles/colorPalette'
 import styled from '@emotion/styled'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, Variants } from 'motion/react'
 import { PropsWithChildren, ReactNode, useState } from 'react'
 
 interface DropdownProps extends PropsWithChildren {
   trigger: ReactNode
   minWidth?: number
   position?: 'center' | 'left' | 'right'
+  animation?: 'fade-up' | 'zoom-in'
 }
 
-function Dropdown({ trigger, children, minWidth = 200, position = 'left' }: DropdownProps) {
+function Dropdown({
+  trigger,
+  children,
+  minWidth = 200,
+  position = 'left',
+  animation = 'zoom-in',
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -20,10 +27,12 @@ function Dropdown({ trigger, children, minWidth = 200, position = 'left' }: Drop
         <AnimatePresence>
           {isOpen && (
             <DropdownWrapper
-              initial={{ opacity: 0, scale: 0.95, y: -4 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -4 }}
-              transition={{ duration: 0.2 }}
+              key={'dropdown'}
+              initial="close"
+              animate="open"
+              exit="close"
+              variants={animation === 'fade-up' ? fadeUpVariants : zoomInVariants}
+              // transition={{ duration: 0.2 }}
               css={{
                 minWidth,
                 ...(position === 'left'
@@ -69,3 +78,28 @@ const Backdrop = styled.div`
   height: 100vh;
   z-index: var(--dimmed-zindex);
 `
+
+const fadeUpVariants: Variants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3 },
+  },
+  close: {
+    opacity: 0,
+    y: -15,
+  },
+}
+
+const zoomInVariants: Variants = {
+  open: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+  },
+  close: {
+    opacity: 0,
+    scale: 0.95,
+    y: -4,
+  },
+}

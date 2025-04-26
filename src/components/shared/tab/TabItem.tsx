@@ -1,6 +1,6 @@
 import { colors } from '@/styles/colorPalette'
 import styled from '@emotion/styled'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 interface TabItemProps {
   label: string

@@ -1,40 +1,80 @@
-import { Token } from '@/models/tokens'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
-import { motion } from 'framer-motion'
-import { Icon } from '../shared'
-import TokenImage from '../shared/token-image'
+import { motion } from 'motion/react'
+import { Icon, TokenImage } from '../shared'
 import { css } from '@emotion/react'
+import { useState } from 'react'
+import TokenSelectModal from './modal/TokenSelectModal'
+import { useSwapContext } from '@/contexts/SwapContextProvider'
+import { abbreviateNumber, capitalizeFirstLetter } from '@/utils/common'
+import { SwapAction } from '@/models/tokens'
 
 interface SwapTokenBoxProps {
-  title: string
-  token: Token | null
+  action: SwapAction
 }
-function SwapTokenBox({ title, token }: SwapTokenBoxProps) {
+
+function SwapTokenBox({ action }: SwapTokenBoxProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { swapPair, swapValues, tokenMode, convertedValues, onInputChange, onModeChange } =
+    useSwapContext()
+
+  const selectedToken = swapPair[action]
+  const isTokenSelected = !!selectedToken
+
+  const tokenValue = swapValues[action]
+  const isTokenMode = tokenMode[action]
+  const convertedValue = convertedValues[action]
+
   return (
-    <BoxContainer $isSelected={!!token}>
-      <BoxLabel>{title}</BoxLabel>
+    <>
+      <TokenBox
+        $isSelected={isTokenSelected}
+        {...(!isTokenSelected && { onClick: () => setIsModalOpen(true) })}
+      >
+        <BoxLabel>{capitalizeFirstLetter(action)}</BoxLabel>
 
-      <TokenAmountSection>
-        <TokenInput placeholder="0" disabled={!token} />
-        <TokenSelectButton $isSelected={!!token} whileTap={{ scale: 0.95 }}>
-          {token && <TokenImage token={token.symbol} size={28} />}
-          <p>{token ? token.symbol : 'Select token'}</p>
-          <Icon name="IcChevronDown" size={24} />
-        </TokenSelectButton>
-      </TokenAmountSection>
+        <TokenAmountSection>
+          {isTokenSelected ? (
+            <InputWrapper>
+              {!isTokenMode && <span>$</span>}
+              <TokenInput placeholder="0" value={tokenValue} onChange={onInputChange(action)} />
+            </InputWrapper>
+          ) : (
+            <TokenDisabledLabel>0</TokenDisabledLabel>
+          )}
+          <TokenSelectButton
+            $isSelected={isTokenSelected}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsModalOpen(true)}
+          >
+            {isTokenSelected && <TokenImage token={selectedToken.symbol} size={28} />}
+            <p>{isTokenSelected ? selectedToken.symbol : 'Select token'}</p>
+            <Icon name="IcChevronDown" size={24} />
+          </TokenSelectButton>
+        </TokenAmountSection>
 
-      <ConvertedAmount>$100</ConvertedAmount>
+        {isTokenSelected && convertedValue && (
+          <ConvertedAmount onClick={() => onModeChange(action)}>
+            {isTokenMode
+              ? `$${abbreviateNumber(convertedValue)}`
+              : `${abbreviateNumber(convertedValue)} ${selectedToken.symbol}`}
+          </ConvertedAmount>
+        )}
+      </TokenBox>
 
-      {/* {!token && <Dim />} */}
-    </BoxContainer>
+      <TokenSelectModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        action={action}
+      />
+    </>
   )
 }
 
 export default SwapTokenBox
 
-const BoxContainer = styled.div<{ $isSelected: boolean }>`
+const TokenBox = styled.div<{ $isSelected: boolean }>`
   position: relative;
   width: 100%;
   display: flex;
@@ -44,6 +84,7 @@ const BoxContainer = styled.div<{ $isSelected: boolean }>`
   border-radius: 20px;
   border: 1px solid ${({ $isSelected }) => ($isSelected ? colors.surface3 : 'transparent')};
   background-color: ${({ $isSelected }) => ($isSelected ? colors.surface1 : colors.surface2)};
+  min-height: 130px;
 
   ${({ $isSelected }) =>
     !$isSelected &&
@@ -73,13 +114,32 @@ const TokenAmountSection = styled.div`
   width: 100%;
 `
 
+const TokenDisabledLabel = styled.p`
+  font-size: 36px;
+  line-height: 43px;
+  font-weight: 500;
+  color: ${colors.neutral3};
+`
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+
+  span {
+    font-size: 36px;
+    line-height: 43px;
+    font-weight: 500;
+    color: ${colors.neutral1};
+  }
+`
+
 const TokenInput = styled.input`
   font-size: 36px;
   line-height: 43px;
   font-weight: 500;
   color: ${colors.color};
-  width: fit-content;
-  flex: 1;
 
   &::placeholder {
     color: ${colors.neutral3};
@@ -107,22 +167,27 @@ const TokenSelectButton = styled(motion.button)<{ $isSelected: boolean }>`
   svg {
     color: ${({ $isSelected }) => ($isSelected ? colors.color : colors.white)};
   }
+
+  ${({ $isSelected }) =>
+    $isSelected &&
+    css`
+      &:hover {
+        background-color: ${colors.surface1Hovered};
+      }
+    `}
 `
 
-const ConvertedAmount = styled.p`
+const ConvertedAmount = styled.button`
   font-size: ${fonts.size.micro};
   line-height: 18px;
   font-weight: ${fonts.weight.medium};
   color: ${colors.neutral2};
-`
+  text-align: start;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
 
-const Dim = styled.div`
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: ${colors.surface2};
-  border-radius: 20px;
+  &:active {
+    opacity: 0.6;
+  }
 `

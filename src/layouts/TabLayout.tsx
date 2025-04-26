@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import styled from '@emotion/styled'
-import NavTab from '@/components/shared/tab/NavTab'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
+import { NavTab } from '@/components/shared'
 
 function TabLayout() {
   const location = useLocation()

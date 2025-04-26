@@ -1,6 +1,6 @@
 import { colors } from '@/styles/colorPalette'
 import styled from '@emotion/styled'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 import { PropsWithChildren, ReactNode, useState } from 'react'
 
 interface HoverDropdownProps extends PropsWithChildren {
@@ -21,6 +21,7 @@ function HoverDropdown({ trigger, children, minWidth = 200 }: HoverDropdownProps
       <AnimatePresence>
         {isOpen && (
           <DropdownWrapper
+            key={'hover-dropdown'}
             initial={{ opacity: 0, scale: 0.95, y: -4 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -4 }}
