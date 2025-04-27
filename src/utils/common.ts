@@ -56,7 +56,6 @@ export function formatUnit(value: bigint, decimals: number): string {
   const integerPart = str.slice(0, -decimals)
   const decimalPart = str.slice(-decimals).replace(/0+$/, '')
 
-  // console.log({ integerPart, decimalPart })
   return decimalPart ? `${integerPart}.${decimalPart}` : integerPart
 }
 

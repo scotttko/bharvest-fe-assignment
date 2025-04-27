@@ -77,14 +77,6 @@ const LangHeader = styled.div`
   }
 `
 
-const PreferenceTitle = styled.p`
-  font-size: ${fonts.size.large};
-  line-height: ${fonts.lineHeight.large};
-  font-weight: ${fonts.weight.medium};
-  color: ${colors.neutral1};
-  padding: 8px 0;
-`
-
 const LangList = styled.div`
   display: flex;
   flex-direction: column;
@@ -106,36 +98,5 @@ const LangButton = styled.button`
 
   &:hover {
     opacity: 0.7;
-  }
-`
-
-const PreferenceItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 40px;
-`
-
-const PreferenceItemLabel = styled.span`
-  font-size: ${fonts.size.small};
-  line-height: ${fonts.lineHeight.small};
-  font-weight: ${fonts.weight.medium};
-  color: ${colors.neutral2};
-`
-
-const PreferenceButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-
-  p {
-    font-size: ${fonts.size.small};
-    font-weight: ${fonts.weight.book};
-    color: ${colors.neutral1};
-
-    &:hover {
-      opacity: 0.6;
-    }
   }
 `
