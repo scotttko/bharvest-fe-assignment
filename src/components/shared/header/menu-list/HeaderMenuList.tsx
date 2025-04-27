@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import HeaderMenu, { HeaderMenuItem } from './HeaderMenu'
+import HeaderMenu from './HeaderMenu'
+import { HeaderMenuItem } from '@/models/header'
 
 function HeaderMenuList() {
   return (
@@ -21,30 +22,30 @@ const HeaderMenuListContainer = styled.div`
 
 const HEADER_MENU: HeaderMenuItem[] = [
   {
-    label: '거래',
+    label: 'nav-trade',
     path: '/swap',
     menu: [
-      { label: '스왑', path: '/swap', iconName: 'IcSwap' },
-      { label: '지정가 주문', path: '/limit', iconName: 'IcLimit' },
-      { label: '보내기', path: '/send', iconName: 'IcSend' },
-      { label: '구입하다', path: '/buy', iconName: 'IcBuy', iconSize: 28 },
+      { label: 'nav-trade-swap', path: '/swap', iconName: 'IcSwap' },
+      { label: 'nav-trade-limit', path: '/limit', iconName: 'IcLimit' },
+      { label: 'nav-trade-send', path: '/send', iconName: 'IcSend' },
+      { label: 'nav-trade-buy', path: '/buy', iconName: 'IcBuy', iconSize: 28 },
     ],
   },
   {
-    label: '탐색',
+    label: 'nav-explore',
     path: '/explore',
     menu: [
-      { label: '토큰', path: '/explore/tokens' },
-      { label: '풀', path: '/explore/pools' },
-      { label: '트랜잭션', path: '/explore/transactions' },
+      { label: 'nav-explore-tokens', path: '/explore/tokens' },
+      { label: 'nav-explore-pools', path: '/explore/pools' },
+      { label: 'nav-explore-transactions', path: '/explore/transactions' },
     ],
   },
   {
-    label: '풀',
+    label: 'nav-pool',
     path: '/positions',
     menu: [
-      { label: '포지션 보기', path: '/positions' },
-      { label: '포지션 생성', path: '/positions/create' },
+      { label: 'nav-pool-view', path: '/positions' },
+      { label: 'nav-pool-create', path: '/positions/create' },
     ],
   },
 ]

@@ -7,8 +7,10 @@ import HeaderMenuList from './menu-list/HeaderMenuList'
 import UserPreference from './user/UserPreference'
 import { fonts } from '@/styles/fonts'
 import SearchBar from './search/SearchBar'
+import { useTranslation } from 'react-i18next'
 
 function Header() {
+  const { t } = useTranslation()
   return (
     <HeaderContainer>
       <HeaderNav>
@@ -21,7 +23,7 @@ function Header() {
 
         <UserSection>
           <UserPreference />
-          <WalletButton>Connect</WalletButton>
+          <WalletButton>{t('header.connect')}</WalletButton>
         </UserSection>
       </HeaderNav>
     </HeaderContainer>

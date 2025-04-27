@@ -8,8 +8,10 @@ import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
 import { motion } from 'motion/react'
+import { useTranslation } from 'react-i18next'
 
 function SwapPageView() {
+  const { t } = useTranslation()
   const { onSwitch, swapPair } = useSwapContext()
 
   return (
@@ -24,7 +26,7 @@ function SwapPageView() {
       </SellBoxWrapper>
 
       <SwapTokenBox action="buy" key={swapPair.buy?.symbol} />
-      <ConnectButton>Connect Wallet</ConnectButton>
+      <ConnectButton>{t('swap.connect-wallet')}</ConnectButton>
 
       <SwapInfoAccordion />
     </SwapContainer>

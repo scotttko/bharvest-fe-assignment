@@ -1,11 +1,12 @@
 import { colors } from '@/styles/colorPalette'
 import styled from '@emotion/styled'
-import { motion } from 'motion/react'
 import Icon, { IconName } from '../icon'
 import { forwardRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import { TabTrans } from '@/models/header'
 
 interface TabItemProps {
-  label: string
+  label?: TabTrans
   icon?: IconName
   isActive: boolean
   onClick: () => void
@@ -13,12 +14,15 @@ interface TabItemProps {
 
 const TabItem = forwardRef<HTMLButtonElement, TabItemProps>(
   ({ label, icon, isActive, onClick }, ref) => {
+    const { t } = useTranslation()
     return (
       <TabItemContainer ref={ref} onClick={onClick}>
         {icon ? (
           <Icon name={icon} size={20} color={colors.color} />
         ) : (
-          <p css={{ color: isActive ? colors.color : colors.neutral2 }}>{label}</p>
+          label && (
+            <p css={{ color: isActive ? colors.color : colors.neutral2 }}>{t(`tab.${label}`)}</p>
+          )
         )}
       </TabItemContainer>
     )

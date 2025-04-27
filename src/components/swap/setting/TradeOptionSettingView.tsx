@@ -4,12 +4,15 @@ import { useSwapSettingContext } from '@/contexts/SwapSettingContext'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
+import { Trans, useTranslation } from 'react-i18next'
 
 interface TradeOptionSettingProps {
   onBack: () => void
 }
 
-function TradeOptionSetting({ onBack }: TradeOptionSettingProps) {
+function TradeOptionSettingView({ onBack }: TradeOptionSettingProps) {
+  const { t } = useTranslation()
+
   const { tradeOptions, onChangeTradeOptions } = useSwapSettingContext()
 
   const isCustomDisabled = Object.entries(tradeOptions)
@@ -22,18 +25,24 @@ function TradeOptionSetting({ onBack }: TradeOptionSettingProps) {
         <button onClick={onBack}>
           <Icon name="IcChevronDown" style={{ transform: 'rotate(0deg)' }} />
         </button>
-        <p>Trade Options</p>
+        <p>{t('swap-settings.trade-options')}</p>
       </TradeOptionHeader>
 
       <DefaultOptionWrapper>
         <DefaultContent>
-          <p>Default</p>
-          <span>Selecting this option identifies the most efficient route for your swap.</span>
+          <p>{t('swap-settings.trade-options-default')}</p>
+          <span>{t('swap-settings.trade-options-default-desc')}</span>
 
           {tradeOptions.default && (
             <div css={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-              <span>Includes</span>
-              <span className="uniswap">Uniswap X</span>
+              <span>
+                <Trans
+                  i18nKey={'swap-settings.trade-options-default-uniswap'}
+                  components={{
+                    tag: <span className="uniswap" />,
+                  }}
+                />
+              </span>
             </div>
           )}
         </DefaultContent>
@@ -92,7 +101,7 @@ function TradeOptionSetting({ onBack }: TradeOptionSettingProps) {
   )
 }
 
-export default TradeOptionSetting
+export default TradeOptionSettingView
 
 const TradeOptionContainer = styled.div`
   display: flex;

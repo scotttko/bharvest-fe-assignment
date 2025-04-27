@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
-import TradeOptionSetting from './TradeOptionSetting'
-import RootSetting from './RootSetting'
+import RootSettingView from './RootSettingView'
+import TradeOptionSettingView from './TradeOptionSettingView'
 
 function SettingDropdown() {
   const [settingRoute, setSettingRoute] = useState<'root' | 'trade-options'>('root')
@@ -9,10 +9,10 @@ function SettingDropdown() {
   return (
     <SettingWrapper>
       {settingRoute === 'root' && (
-        <RootSetting onTradeOptionClick={() => setSettingRoute('trade-options')} />
+        <RootSettingView onTradeOptionClick={() => setSettingRoute('trade-options')} />
       )}
       {settingRoute === 'trade-options' && (
-        <TradeOptionSetting onBack={() => setSettingRoute('root')} />
+        <TradeOptionSettingView onBack={() => setSettingRoute('root')} />
       )}
     </SettingWrapper>
   )

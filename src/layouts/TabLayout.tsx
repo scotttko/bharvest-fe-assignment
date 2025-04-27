@@ -11,10 +11,10 @@ function TabLayout() {
       <TabWrapper>
         <NavTab
           tabs={[
-            { label: 'Swap', path: '/swap' },
-            { label: 'Limit', path: '/limit' },
-            { label: 'Send', path: '/send' },
-            { label: 'Buy', path: '/buy' },
+            { label: 'swap', path: '/swap' },
+            { label: 'limit', path: '/limit' },
+            { label: 'send', path: '/send' },
+            { label: 'buy', path: '/buy' },
           ]}
         />
 

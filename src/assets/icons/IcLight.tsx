@@ -10,7 +10,7 @@ function IcLight({ size, color, ...props }: IcLightProps) {
       height={size ?? '20px'}
       viewBox="0 0 24 24"
       fill="none"
-      stroke-width="8"
+      strokeWidth="8"
       {...props}
     >
       <path

@@ -1,0 +1,56 @@
+{
+  "tab": {
+    "theme-auto": "자동",
+    "swap": "스왑",
+    "limit": "지정가 주문",
+    "send": "보내기",
+    "buy": "구입하기"
+  },
+  "header": {
+    "nav-trade": "거래",
+    "nav-trade-swap": "스왑",
+    "nav-trade-limit": "지정가 주문",
+    "nav-trade-send": "보내기",
+    "nav-trade-buy": "구입하기",
+
+    "nav-explore": "탐색",
+    "nav-explore-tokens": "토큰",
+    "nav-explore-pools": "풀",
+    "nav-explore-transactions": "트랜잭션",
+
+    "nav-pool": "풀",
+    "nav-pool-view": "포지션 보기",
+    "nav-pool-create": "포지션 생성",
+
+    "search-bar-placeholder": "토큰 검색",
+    "connect": "연결",
+
+    "pref-title": "글로벌 선호도",
+    "pref-theme": "테마",
+    "theme-auto": "자동",
+    "pref-lang": "언어",
+    "lang-en": "영어",
+    "lang-ko": "한국어",
+    "pref-currency": "통화"
+  },
+  "swap-settings": {
+    "max-slippage": "최대 슬리피지",
+    "slippage-auto": "자동",
+    "deadline": "스왑 기한",
+    "trade-options": "거래 옵션",
+    "trade-options-default": "기본",
+    "trade-options-custom": "사용자 정의",
+    "trade-options-default-desc": "이 옵션을 선택하면 스왑에 가장 효율적인 경로를 탐색합니다.",
+    "trade-options-default-uniswap": "<tag>UniswapX</tag> 포함"
+  },
+  "swap": {
+    "sell": "팔기",
+    "buy": "구매",
+    "connect-wallet": "지갑 연결"
+  },
+  "swap-token-select": {
+    "title": "토큰을 선택하세요",
+    "search-token": "토큰 검색",
+    "tokens-by-volume": "24시간 거래량 기준 토큰"
+  }
+}

@@ -3,12 +3,14 @@ import { useSwapSettingContext } from '@/contexts/SwapSettingContext'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
+import { useTranslation } from 'react-i18next'
 
 interface RootSettingProps {
   onTradeOptionClick: () => void
 }
 
-function RootSetting({ onTradeOptionClick }: RootSettingProps) {
+function RootSettingView({ onTradeOptionClick }: RootSettingProps) {
+  const { t } = useTranslation()
   const {
     maxSlippage,
     deadline,
@@ -28,11 +30,11 @@ function RootSetting({ onTradeOptionClick }: RootSettingProps) {
     <SettingList>
       <SettingItem>
         <SettingLabel>
-          <p>Max slippage</p>
+          <p>{t('swap-settings.max-slippage')}</p>
         </SettingLabel>
         <SettingInput>
           <AutoBadge $auto={maxSlippage.auto} onClick={onChangeSlippageAuto}>
-            Auto
+            {t('swap-settings.slippage-auto')}
           </AutoBadge>
           <input
             placeholder="0.50"
@@ -45,7 +47,7 @@ function RootSetting({ onTradeOptionClick }: RootSettingProps) {
       </SettingItem>
       <SettingItem>
         <SettingLabel>
-          <p>Swap deadline</p>
+          <p>{t('swap-settings.deadline')}</p>
         </SettingLabel>
         <SettingInput>
           <input value={deadline} onChange={onChangeDeadline} />
@@ -54,11 +56,15 @@ function RootSetting({ onTradeOptionClick }: RootSettingProps) {
       </SettingItem>
       <SettingItem>
         <SettingLabel>
-          <p>Trade options</p>
+          <p>{t('swap-settings.trade-options')}</p>
         </SettingLabel>
 
         <TradeOptionButton onClick={onTradeOptionClick}>
-          <p>{isCustomTradeOption ? 'Custom' : 'Default'}</p>
+          <p>
+            {isCustomTradeOption
+              ? t('swap-settings.trade-options-custom')
+              : t('swap-settings.trade-options-default')}
+          </p>
           <Icon
             name="IcChevronDown"
             size={24}
@@ -71,7 +77,7 @@ function RootSetting({ onTradeOptionClick }: RootSettingProps) {
   )
 }
 
-export default RootSetting
+export default RootSettingView
 
 const SettingList = styled.div`
   display: flex;

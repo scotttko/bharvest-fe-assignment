@@ -3,10 +3,12 @@ import styled from '@emotion/styled'
 import Icon from '../../icon'
 import { fonts } from '@/styles/fonts'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function SearchBar() {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const [isFocused, setIsFocused] = useState(false)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -32,7 +34,7 @@ function SearchBar() {
     <SearchBarContainer>
       <Icon name="IcSearch" color={colors.neutral2} />
       <SearchInput
-        placeholder="Search tokens"
+        placeholder={t('header.search-bar-placeholder')}
         ref={inputRef}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}

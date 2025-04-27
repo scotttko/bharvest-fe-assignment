@@ -1,0 +1,56 @@
+{
+  "tab": {
+    "theme-auto": "Auto",
+    "swap": "Swap",
+    "limit": "Limit",
+    "send": "Send",
+    "buy": "Buy"
+  },
+  "header": {
+    "nav-trade": "Trade",
+    "nav-trade-swap": "Swap",
+    "nav-trade-limit": "Limit",
+    "nav-trade-send": "Send",
+    "nav-trade-buy": "Buy",
+
+    "nav-explore": "Explore",
+    "nav-explore-tokens": "Tokens",
+    "nav-explore-pools": "Pools",
+    "nav-explore-transactions": "Transactions",
+
+    "nav-pool": "Pool",
+    "nav-pool-view": "View positions",
+    "nav-pool-create": "Create position",
+
+    "search-bar-placeholder": "Search tokens",
+    "connect": "Connect",
+
+    "pref-title": "GLobal preferences",
+    "pref-theme": "Theme",
+
+    "pref-lang": "Language",
+    "lang-en": "English",
+    "lang-ko": "Korean",
+    "pref-currency": "Currency"
+  },
+  "swap-settings": {
+    "max-slippage": "Max slippage",
+    "slippage-auto": "Auto",
+    "deadline": "Swap deadline",
+    "trade-options": "Trade options",
+    "trade-options-default": "Default",
+    "trade-options-custom": "Custom",
+    "trade-options-default-desc": "Selecting this option identifies the most efficient route for your swap.",
+    "trade-options-default-uniswap": "Includes <tag>UniswapX</tag>"
+  },
+  "swap": {
+    "sell": "Sell",
+    "buy": "Buy",
+    "connect-wallet": "Connect Wallet"
+  },
+  "swap-token-select": {
+    "title": "Select a token",
+    "search-token": "Search tokens",
+    "tokens-by-volume": "Tokens by 24H volume"
+  }
+}

@@ -3,18 +3,9 @@ import styled from '@emotion/styled'
 import { fonts } from '@/styles/fonts'
 import { colors } from '@/styles/colorPalette'
 import { Link, useLocation } from 'react-router-dom'
-import Icon, { IconName } from '../../icon'
-
-export interface HeaderMenuItem {
-  label: string
-  path: string
-  menu: {
-    label: string
-    path: string
-    iconName?: IconName
-    iconSize?: number
-  }[]
-}
+import Icon from '../../icon'
+import { HeaderMenuItem } from '@/models/header'
+import { useTranslation } from 'react-i18next'
 
 interface HeaderMenuProps {
   menu: HeaderMenuItem
@@ -23,12 +14,13 @@ interface HeaderMenuProps {
 function HeaderMenu({ menu }: HeaderMenuProps) {
   const location = useLocation()
   const isSelected = menu.menu.some((item) => item.path === location.pathname)
+  const { t } = useTranslation()
 
   return (
     <HoverDropdown
       trigger={
         <MenuLabel to={menu.path} css={{ color: isSelected ? colors.color : colors.neutral2 }}>
-          {menu.label}
+          {t(`header.${menu.label}`)}
         </MenuLabel>
       }
     >
@@ -36,7 +28,7 @@ function HeaderMenu({ menu }: HeaderMenuProps) {
         {menu.menu.map((item) => (
           <MenuItem key={item.label} to={item.path}>
             {item.iconName && <Icon name={item.iconName} size={item.iconSize ?? 24} />}
-            {item.label}
+            {t(`header.${item.label}`)}
           </MenuItem>
         ))}
       </MenuList>

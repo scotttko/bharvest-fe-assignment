@@ -3,9 +3,10 @@ import styled from '@emotion/styled'
 import TabItem from './TabItem'
 import { colors } from '@/styles/colorPalette'
 import { useEffect, useRef, useState } from 'react'
+import { TabTrans } from '@/models/header'
 
 interface NavTabItem {
-  label: string
+  label: TabTrans
   path: string
 }
 

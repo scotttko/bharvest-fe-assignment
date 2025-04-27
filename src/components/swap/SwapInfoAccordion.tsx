@@ -8,11 +8,16 @@ import { fonts } from '@/styles/fonts'
 import { SwapAction } from '@/models/tokens'
 import { divide } from '@/utils/common'
 import { oppositeActions } from '@/constants/tokens'
+import { useSwapSettingContext } from '@/contexts/SwapSettingContext'
+import { useTranslation } from 'react-i18next'
 
 function SwapInfoAccordion() {
+  const { t } = useTranslation()
   const { swapPair, buyTokenRatio } = useSwapContext()
   const [isAccordionOpen, setIsAccordionOpen] = useState(false)
   const [ratioBasis, setRatioBasis] = useState<SwapAction>('buy')
+
+  const { maxSlippage } = useSwapSettingContext()
 
   const ratio = useMemo(() => {
     if (!buyTokenRatio) {
@@ -60,8 +65,11 @@ function SwapInfoAccordion() {
           >
             <ContentWrapper>
               <InfoRow>
-                <span>Max slippage</span>
-                <p>0.50%</p>
+                <span>{t('swap-settings.max-slippage')}</span>
+                <InfoValue>
+                  <AutoBadge $auto={maxSlippage.auto}>{t('swap-settings.slippage-auto')}</AutoBadge>
+                  <p>{maxSlippage.value}%</p>
+                </InfoValue>
               </InfoRow>
             </ContentWrapper>
           </motion.div>
@@ -128,6 +136,25 @@ const InfoRow = styled.div`
     font-weight: ${fonts.weight.medium};
     color: ${colors.neutral1};
   }
+`
+
+const InfoValue = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`
+
+const AutoBadge = styled.div<{ $auto: boolean }>`
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: ${({ $auto }) => ($auto ? colors.accent2 : colors.surface3)};
+  color: ${({ $auto }) => ($auto ? colors.accent1 : colors.neutral2)};
+  font-size: ${fonts.size.micro};
+  font-weight: ${fonts.weight.medium};
+  margin-right: 4px;
 `
 
 const accordionVariants: Variants = {

@@ -7,12 +7,14 @@ import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
 import { useEffect, useMemo, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface TokenSelectContentsProps {
   action: SwapAction
   onClose: () => void
 }
 function TokenSelectContents({ action, onClose }: TokenSelectContentsProps) {
+  const { t } = useTranslation()
   const inputRef = useRef<HTMLInputElement | null>(null)
   const { onTokenSelect } = useSwapContext()
   const { value, onChange } = useInput()
@@ -41,13 +43,18 @@ function TokenSelectContents({ action, onClose }: TokenSelectContentsProps) {
     <ContentContainer>
       <SearchBarContainer>
         <Icon name="IcSearch" />
-        <SearchInput placeholder="Search tokens" ref={inputRef} value={value} onChange={onChange} />
+        <SearchInput
+          placeholder={t('swap-token-select.search-token')}
+          ref={inputRef}
+          value={value}
+          onChange={onChange}
+        />
       </SearchBarContainer>
 
       <TokenListWrapper>
         <TokenListTitle>
           <Icon name="IcStar" color={colors.neutral2} size={16} />
-          <p>Tokens by 24H volume</p>
+          <p>{t('swap-token-select.tokens-by-volume')}</p>
         </TokenListTitle>
 
         <TokenList>

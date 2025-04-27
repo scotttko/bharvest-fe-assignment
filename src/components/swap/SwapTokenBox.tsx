@@ -9,12 +9,14 @@ import TokenSelectModal from './modal/TokenSelectModal'
 import { useSwapContext } from '@/contexts/SwapContext'
 import { abbreviateNumber, capitalizeFirstLetter } from '@/utils/common'
 import { SwapAction } from '@/models/tokens'
+import { useTranslation } from 'react-i18next'
 
 interface SwapTokenBoxProps {
   action: SwapAction
 }
 
 function SwapTokenBox({ action }: SwapTokenBoxProps) {
+  const { t } = useTranslation()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { swapPair, swapValues, tokenMode, convertedValues, onInputChange, onModeChange } =
     useSwapContext()
@@ -32,7 +34,7 @@ function SwapTokenBox({ action }: SwapTokenBoxProps) {
         $isSelected={isTokenSelected}
         {...(!isTokenSelected && { onClick: () => setIsModalOpen(true) })}
       >
-        <BoxLabel>{capitalizeFirstLetter(action)}</BoxLabel>
+        <BoxLabel>{action === 'buy' ? t('swap.buy') : t('swap.sell')}</BoxLabel>
 
         <TokenAmountSection>
           {isTokenSelected ? (

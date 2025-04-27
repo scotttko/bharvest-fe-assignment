@@ -63,7 +63,7 @@ export const oppositeActions: { [key in SwapAction]: SwapAction } = {
 const Context = createContext<SwapSettingContextValue>(defaultValues)
 
 function SwapSettingContextProvider({ children }: PropsWithChildren) {
-  const [maxSlippage, setMaxSlippage] = useState<MaxSlippage>({ auto: true, value: '' })
+  const [maxSlippage, setMaxSlippage] = useState<MaxSlippage>({ auto: true, value: '0.5' })
   const [deadline, setDeadline] = useState<string>('30')
   const [tradeOptions, setTradeOptions] = useState<TradeOptions>({
     default: true,

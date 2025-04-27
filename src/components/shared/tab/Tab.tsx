@@ -3,9 +3,10 @@ import TabItem from './TabItem'
 import { colors } from '@/styles/colorPalette'
 import { IconName } from '../icon'
 import { useLayoutEffect, useRef, useState } from 'react'
+import { TabTrans } from '@/models/header'
 
 interface StateTabItem<T> {
-  label: string
+  label?: TabTrans
   icon?: IconName
   value: T
 }
@@ -36,7 +37,7 @@ function Tab<T>({ tabs, activeTab, onChange }: TabProps<T>) {
     <NavTabGroup>
       {tabs.map((tab, index) => (
         <TabItem
-          key={tab.label}
+          key={index}
           ref={(el) => {
             tabRefs.current[index] = el
           }}
