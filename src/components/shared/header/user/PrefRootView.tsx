@@ -1,24 +1,11 @@
-import { ThemeTab } from '@/models/header'
 import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next'
-import Tab from '../../tab/Tab'
 import { UserTheme, useTheme } from '@/contexts/ThemeContext'
 import { useCallback } from 'react'
-import Icon from '../../icon'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
-
-const THEME_TABS: ThemeTab[] = [
-  { label: 'theme-auto', value: 'auto' },
-  {
-    value: 'light',
-    icon: 'IcLight',
-  },
-  {
-    value: 'dark',
-    icon: 'IcDark',
-  },
-]
+import { THEME_TABS } from '@/constants/pref'
+import { Tab, Icon } from '@/components/shared'
 
 interface PrefRootViewProps {
   onLangClick: () => void

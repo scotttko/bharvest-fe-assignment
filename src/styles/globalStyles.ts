@@ -176,8 +176,6 @@ export default css`
 
     -webkit-font-smoothing: inherit;
     -moz-osx-font-smoothing: inherit;
-
-    -webkit-appearance: none;
   }
 
   a {

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
-import Icon from '../../icon'
+import { Icon, Dropdown } from '@/components/shared'
 import { colors } from '@/styles/colorPalette'
-import Dropdown from '../../dropdown/Dropdown'
 import { useState } from 'react'
 import PrefRootView from './PrefRootView'
 import PrefLangView from './PrefLangView'

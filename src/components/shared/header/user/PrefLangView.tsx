@@ -1,18 +1,10 @@
-import { LangItem } from '@/models/header'
 import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
 import Icon from '../../icon'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
-
-const LANGUAGES: LangItem[] = [
-  { label: 'lang-en', lang: 'en' },
-  {
-    label: 'lang-ko',
-    lang: 'ko',
-  },
-]
+import { LANGUAGES } from '@/constants/pref'
 
 interface PrefLangViewProps {
   onBack: () => void

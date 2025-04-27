@@ -1,5 +1,4 @@
-import { Icon } from '@/components/shared'
-import Toggle from '@/components/shared/toggle'
+import { Icon, Toggle } from '@/components/shared'
 import { useSwapSettingContext } from '@/contexts/SwapSettingContext'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
