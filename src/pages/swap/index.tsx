@@ -2,8 +2,8 @@ import { Icon } from '@/components/shared'
 import SwapSettingButton from '@/components/swap/setting/SwapSettingButton'
 import SwapInfoAccordion from '@/components/swap/SwapInfoAccordion'
 import SwapTokenBox from '@/components/swap/SwapTokenBox'
-import SwapContextProvider, { useSwapContext } from '@/contexts/SwapContextProvider'
-import SwapSettingContextProvider from '@/contexts/SwapSettingContextProvider'
+import SwapContextProvider, { useSwapContext } from '@/contexts/SwapContext'
+import SwapSettingContextProvider from '@/contexts/SwapSettingContext'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
@@ -91,4 +91,8 @@ const ConnectButton = styled.button`
   font-size: ${fonts.size.large};
   line-height: ${fonts.lineHeight.small};
   font-weight: ${fonts.weight.large};
+
+  &:hover {
+    background-color: ${colors.accent2Hovered};
+  }
 `

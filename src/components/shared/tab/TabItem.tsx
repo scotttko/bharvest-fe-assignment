@@ -1,28 +1,29 @@
 import { colors } from '@/styles/colorPalette'
 import styled from '@emotion/styled'
 import { motion } from 'motion/react'
+import Icon, { IconName } from '../icon'
+import { forwardRef } from 'react'
 
 interface TabItemProps {
   label: string
+  icon?: IconName
   isActive: boolean
   onClick: () => void
 }
 
-function TabItem({ label, isActive, onClick }: TabItemProps) {
-  return (
-    <TabItemContainer onClick={onClick}>
-      <p css={{ color: isActive ? colors.color : colors.neutral2 }}>{label}</p>
-
-      {isActive && (
-        <motion.div
-          className="underline"
-          layoutId="underline"
-          transition={{ duration: 0.2, ease: 'easeInOut' }}
-        />
-      )}
-    </TabItemContainer>
-  )
-}
+const TabItem = forwardRef<HTMLButtonElement, TabItemProps>(
+  ({ label, icon, isActive, onClick }, ref) => {
+    return (
+      <TabItemContainer ref={ref} onClick={onClick}>
+        {icon ? (
+          <Icon name={icon} size={20} color={colors.color} />
+        ) : (
+          <p css={{ color: isActive ? colors.color : colors.neutral2 }}>{label}</p>
+        )}
+      </TabItemContainer>
+    )
+  },
+)
 
 export default TabItem
 
@@ -33,6 +34,8 @@ const TabItemContainer = styled.button`
   border-radius: 32px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  min-width: 64px;
 
   p {
     font-size: 14px;

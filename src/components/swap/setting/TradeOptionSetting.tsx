@@ -1,6 +1,6 @@
 import { Icon } from '@/components/shared'
 import Toggle from '@/components/shared/toggle'
-import { useSwapSettingContext } from '@/contexts/SwapSettingContextProvider'
+import { useSwapSettingContext } from '@/contexts/SwapSettingContext'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'

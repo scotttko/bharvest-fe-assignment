@@ -4,10 +4,13 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import { Global } from '@emotion/react'
 import globalStyles from './styles/globalStyles.ts'
+import { ThemeContextProvider } from './contexts/ThemeContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Global styles={globalStyles} />
-    <App />
+    <ThemeContextProvider>
+      <Global styles={globalStyles} />
+      <App />
+    </ThemeContextProvider>
   </StrictMode>,
 )

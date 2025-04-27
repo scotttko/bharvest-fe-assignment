@@ -1,6 +1,6 @@
 import { Icon, TokenImage } from '@/components/shared'
 import { TOKENS } from '@/constants/tokens'
-import { useSwapContext } from '@/contexts/SwapContextProvider'
+import { useSwapContext } from '@/contexts/SwapContext'
 import useInput from '@/hooks/useInput'
 import { SwapAction, Token } from '@/models/tokens'
 import { colors } from '@/styles/colorPalette'

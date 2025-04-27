@@ -30,7 +30,7 @@ function SearchBar() {
 
   return (
     <SearchBarContainer>
-      <Icon name="IcSearch" />
+      <Icon name="IcSearch" color={colors.neutral2} />
       <SearchInput
         placeholder="Search tokens"
         ref={inputRef}

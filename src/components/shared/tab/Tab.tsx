@@ -1,35 +1,36 @@
-import { useLocation, useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
 import TabItem from './TabItem'
 import { colors } from '@/styles/colorPalette'
-import { useEffect, useRef, useState } from 'react'
+import { IconName } from '../icon'
+import { useLayoutEffect, useRef, useState } from 'react'
 
-interface NavTabItem {
+interface StateTabItem<T> {
   label: string
-  path: string
+  icon?: IconName
+  value: T
 }
 
-interface NavTabProps {
-  tabs: NavTabItem[]
+interface TabProps<T> {
+  tabs: StateTabItem<T>[]
+  activeTab: T
+  onChange: (tab: T) => void
 }
-function NavTab({ tabs }: NavTabProps) {
-  const location = useLocation()
-  const navigate = useNavigate()
 
+function Tab<T>({ tabs, activeTab, onChange }: TabProps<T>) {
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 })
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
 
-  useEffect(() => {
-    const index = tabs.findIndex((tab) => tab.path === location.pathname)
-    const activeTab = tabRefs.current[index]
+  useLayoutEffect(() => {
+    const index = tabs.findIndex((tab) => tab.value === activeTab)
+    const currentTab = tabRefs.current[index]
 
-    if (activeTab) {
+    if (currentTab) {
       setIndicatorStyle({
-        left: activeTab.offsetLeft,
-        width: activeTab.offsetWidth,
+        left: currentTab.offsetLeft,
+        width: currentTab.offsetWidth,
       })
     }
-  }, [location.pathname, tabs])
+  }, [activeTab, tabs])
 
   return (
     <NavTabGroup>
@@ -40,8 +41,9 @@ function NavTab({ tabs }: NavTabProps) {
             tabRefs.current[index] = el
           }}
           label={tab.label}
-          isActive={location.pathname === tab.path}
-          onClick={() => navigate(tab.path)}
+          icon={tab.icon}
+          isActive={activeTab === tab.value}
+          onClick={() => onChange(tab.value)}
         />
       ))}
 
@@ -50,15 +52,16 @@ function NavTab({ tabs }: NavTabProps) {
   )
 }
 
-export default NavTab
+export default Tab
 
 const NavTabGroup = styled.div`
   display: flex;
   align-items: center;
-  align-self: flex-start;
   gap: 12px;
   padding: 4px;
   padding-bottom: 6px;
+  border-radius: 24px;
+  border: 1px solid ${colors.surface3};
   position: relative;
 `
 

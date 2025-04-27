@@ -48,6 +48,9 @@ const TabWrapper = styled.div`
   max-width: 480px;
   width: 100%;
   padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
 `
 
 const TabContentWrapper = styled.div`

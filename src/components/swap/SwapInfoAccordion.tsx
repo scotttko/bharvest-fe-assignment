@@ -1,4 +1,4 @@
-import { useSwapContext } from '@/contexts/SwapContextProvider'
+import { useSwapContext } from '@/contexts/SwapContext'
 import styled from '@emotion/styled'
 import { Icon } from '../shared'
 import { colors } from '@/styles/colorPalette'

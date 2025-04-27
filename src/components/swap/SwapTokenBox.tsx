@@ -6,7 +6,7 @@ import { Icon, TokenImage } from '../shared'
 import { css } from '@emotion/react'
 import { useState } from 'react'
 import TokenSelectModal from './modal/TokenSelectModal'
-import { useSwapContext } from '@/contexts/SwapContextProvider'
+import { useSwapContext } from '@/contexts/SwapContext'
 import { abbreviateNumber, capitalizeFirstLetter } from '@/utils/common'
 import { SwapAction } from '@/models/tokens'
 
