@@ -68,10 +68,7 @@ const NavTabGroup = styled.div`
 
 const ActiveIndication = styled.div`
   position: absolute;
-  width: 100%;
-  max-width: 64px;
-  bottom: 50%;
-  transform: translateY(50%);
+  top: 4;
   left: 0;
   height: 32px;
   background: ${colors.surface3};
