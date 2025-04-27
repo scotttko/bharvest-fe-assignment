@@ -28,7 +28,7 @@ export default css`
   html {
     width: 100%;
     height: 100%;
-    font-family: 'Pretendard';
+    font-family: 'Pretendard Variable';
     font-weight: 400;
   }
 
