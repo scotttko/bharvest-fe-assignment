@@ -1,7 +1,7 @@
 import { Icon } from '@/components/shared'
 import SwapSettingButton from '@/components/swap/setting/SwapSettingButton'
 import SwapInfoAccordion from '@/components/swap/SwapInfoAccordion'
-import SwapTokenBox from '@/components/swap/SwapTokenBox'
+import SwapTokenBox from '@/components/swap/swap-box/SwapTokenBox'
 import SwapContextProvider, { useSwapContext } from '@/contexts/SwapContext'
 import SwapSettingContextProvider from '@/contexts/SwapSettingContext'
 import { colors } from '@/styles/colorPalette'

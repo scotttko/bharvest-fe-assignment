@@ -27,7 +27,9 @@ function HeaderMenu({ menu }: HeaderMenuProps) {
       <MenuList>
         {menu.menu.map((item) => (
           <MenuItem key={item.label} to={item.path}>
-            {item.iconName && <Icon name={item.iconName} size={item.iconSize ?? 24} />}
+            {item.iconName && (
+              <Icon name={item.iconName} size={item.iconSize ?? 24} color={colors.neutral2} />
+            )}
             {t(`header.${item.label}`)}
           </MenuItem>
         ))}

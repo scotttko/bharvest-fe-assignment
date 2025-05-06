@@ -42,7 +42,7 @@ function TokenSelectContents({ action, onClose }: TokenSelectContentsProps) {
   return (
     <ContentContainer>
       <SearchBarContainer>
-        <Icon name="IcSearch" />
+        <Icon name="IcSearch" color={colors.neutral2} />
         <SearchInput
           placeholder={t('swap-token-select.search-token')}
           ref={inputRef}

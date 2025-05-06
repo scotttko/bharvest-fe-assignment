@@ -62,6 +62,8 @@ function useTokenSwap() {
 
       if (token) {
         setSwapValues((prev) => {
+          if (prev[action] === numValue) return prev
+
           if (!oppositeToken) {
             return { ...prev, [action]: numValue }
           }
@@ -76,6 +78,10 @@ function useTokenSwap() {
           const oppositeValue = tokenMode[oppositeAction]
             ? divide(currentValue, oppositeTokenPrice)
             : currentValue
+
+          if (prev[action] === numValue && prev[oppositeAction] === oppositeValue) {
+            return prev
+          }
 
           return {
             ...prev,

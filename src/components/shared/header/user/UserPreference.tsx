@@ -2,8 +2,8 @@ import styled from '@emotion/styled'
 import { Icon, Dropdown } from '@/components/shared'
 import { colors } from '@/styles/colorPalette'
 import { useState } from 'react'
-import PrefRootView from './PrefRootView'
-import PrefLangView from './PrefLangView'
+import PrefRootView from './root/PrefRootView'
+import PrefLangView from './lang/PrefLangView'
 
 function UserPreference() {
   const [prefRoute, setPrefRoute] = useState<'root' | 'lang'>('root')

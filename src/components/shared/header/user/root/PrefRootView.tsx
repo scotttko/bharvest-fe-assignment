@@ -1,11 +1,9 @@
 import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next'
-import { UserTheme, useTheme } from '@/contexts/ThemeContext'
-import { useCallback } from 'react'
 import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
-import { THEME_TABS } from '@/constants/pref'
-import { Tab, Icon } from '@/components/shared'
+import { Icon } from '@/components/shared'
+import ThemeSwitch from './ThemeSwitch'
 
 interface PrefRootViewProps {
   onLangClick: () => void
@@ -13,14 +11,6 @@ interface PrefRootViewProps {
 
 function PrefRootView({ onLangClick }: PrefRootViewProps) {
   const { t, i18n } = useTranslation()
-  const { theme, onSwitchTheme } = useTheme()
-
-  const handleThemeSwitch = useCallback(
-    (tab: UserTheme) => {
-      onSwitchTheme(tab)
-    },
-    [onSwitchTheme],
-  )
 
   return (
     <PreferenceWrapper>
@@ -30,7 +20,7 @@ function PrefRootView({ onLangClick }: PrefRootViewProps) {
         <PreferenceItem>
           <PreferenceItemLabel>{t('header.pref-theme')}</PreferenceItemLabel>
 
-          <Tab tabs={THEME_TABS} activeTab={theme} onChange={handleThemeSwitch} />
+          <ThemeSwitch />
         </PreferenceItem>
 
         <PreferenceItem>

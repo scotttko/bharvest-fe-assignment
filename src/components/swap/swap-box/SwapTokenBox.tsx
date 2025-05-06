@@ -2,14 +2,15 @@ import { colors } from '@/styles/colorPalette'
 import { fonts } from '@/styles/fonts'
 import styled from '@emotion/styled'
 import { motion } from 'motion/react'
-import { Icon, TokenImage } from '../shared'
+import { Icon, TokenImage } from '../../shared'
 import { css } from '@emotion/react'
-import { useState } from 'react'
-import TokenSelectModal from './modal/TokenSelectModal'
+import { useMemo, useState } from 'react'
+import TokenSelectModal from '../modal/TokenSelectModal'
 import { useSwapContext } from '@/contexts/SwapContext'
 import { abbreviateNumber } from '@/utils/common'
 import { SwapAction } from '@/models/tokens'
 import { useTranslation } from 'react-i18next'
+import SwapInput from './SwapInput'
 
 interface SwapTokenBoxProps {
   action: SwapAction
@@ -21,12 +22,12 @@ function SwapTokenBox({ action }: SwapTokenBoxProps) {
   const { swapPair, swapValues, tokenMode, convertedValues, onInputChange, onModeChange } =
     useSwapContext()
 
-  const selectedToken = swapPair[action]
+  const selectedToken = useMemo(() => swapPair[action], [action, swapPair])
   const isTokenSelected = !!selectedToken
 
-  const tokenValue = swapValues[action]
-  const isTokenMode = tokenMode[action]
-  const convertedValue = convertedValues[action]
+  const tokenValue = useMemo(() => swapValues[action], [action, swapValues])
+  const isTokenMode = useMemo(() => tokenMode[action], [action, tokenMode])
+  const convertedValue = useMemo(() => convertedValues[action], [action, convertedValues])
 
   return (
     <>
@@ -37,14 +38,13 @@ function SwapTokenBox({ action }: SwapTokenBoxProps) {
         <BoxLabel>{action === 'buy' ? t('swap.buy') : t('swap.sell')}</BoxLabel>
 
         <TokenAmountSection>
-          {isTokenSelected ? (
-            <InputWrapper>
-              {!isTokenMode && <span>$</span>}
-              <TokenInput placeholder="0" value={tokenValue} onChange={onInputChange(action)} />
-            </InputWrapper>
-          ) : (
-            <TokenDisabledLabel>0</TokenDisabledLabel>
-          )}
+          <SwapInput
+            value={tokenValue}
+            onChange={onInputChange(action)}
+            isTokenMode={isTokenMode}
+            disabled={!isTokenSelected}
+          />
+
           <TokenSelectButton
             $isSelected={isTokenSelected}
             whileTap={{ scale: 0.95 }}
@@ -114,38 +114,6 @@ const TokenAmountSection = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-`
-
-const TokenDisabledLabel = styled.p`
-  font-size: 36px;
-  line-height: 43px;
-  font-weight: 500;
-  color: ${colors.neutral3};
-`
-
-const InputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  min-width: 0;
-
-  span {
-    font-size: 36px;
-    line-height: 43px;
-    font-weight: 500;
-    color: ${colors.neutral1};
-  }
-`
-
-const TokenInput = styled.input`
-  font-size: 36px;
-  line-height: 43px;
-  font-weight: 500;
-  color: ${colors.color};
-
-  &::placeholder {
-    color: ${colors.neutral3};
-  }
 `
 
 const TokenSelectButton = styled(motion.button)<{ $isSelected: boolean }>`
