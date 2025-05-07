@@ -30,7 +30,7 @@ function PrefLangView({ onBack }: PrefLangViewProps) {
       </LangHeader>
       <LangList>
         {LANGUAGES.map((item) => (
-          <LangButton onClick={() => handleLangChange(item.lang)}>
+          <LangButton key={item.lang} onClick={() => handleLangChange(item.lang)}>
             <p>{t(`header.${item.label}`)}</p>
             {item.lang === i18n.language && <Icon name="IcCheck" color={colors.accent1} />}
           </LangButton>
